@@ -1,0 +1,427 @@
+/* Component-specific styles */
+
+/* Button Components */
+.btn {
+  @apply inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors duration-200;
+}
+
+.btn-primary {
+  @apply bg-indigo-600 text-white hover:bg-indigo-700 focus:ring-indigo-500;
+}
+
+.btn-secondary {
+  @apply bg-gray-600 text-white hover:bg-gray-700 focus:ring-gray-500;
+}
+
+.btn-success {
+  @apply bg-green-600 text-white hover:bg-green-700 focus:ring-green-500;
+}
+
+.btn-danger {
+  @apply bg-red-600 text-white hover:bg-red-700 focus:ring-red-500;
+}
+
+.btn-warning {
+  @apply bg-yellow-600 text-white hover:bg-yellow-700 focus:ring-yellow-500;
+}
+
+.btn-outline {
+  @apply border-gray-300 text-gray-700 bg-white hover:bg-gray-50 focus:ring-indigo-500;
+}
+
+.btn-sm {
+  @apply px-3 py-1 text-xs;
+}
+
+.btn-lg {
+  @apply px-6 py-3 text-base;
+}
+
+.btn:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+/* Card Components */
+.card {
+  @apply bg-white rounded-lg shadow-sm border border-gray-200;
+}
+
+.card-hover {
+  @apply hover:shadow-md transition-shadow duration-200;
+}
+
+.card-header {
+  @apply px-6 py-4 border-b border-gray-200;
+}
+
+.card-body {
+  @apply p-6;
+}
+
+.card-footer {
+  @apply px-6 py-4 border-t border-gray-200 bg-gray-50;
+}
+
+/* Form Components */
+.form-group {
+  @apply mb-4;
+}
+
+.form-label {
+  @apply block text-sm font-medium text-gray-700 mb-2;
+}
+
+.form-input {
+  @apply block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500;
+}
+
+.form-textarea {
+  @apply block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500;
+}
+
+.form-select {
+  @apply block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500;
+}
+
+.form-checkbox {
+  @apply h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded;
+}
+
+.form-radio {
+  @apply h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300;
+}
+
+.form-error {
+  @apply mt-1 text-sm text-red-600;
+}
+
+.form-help {
+  @apply mt-1 text-sm text-gray-500;
+}
+
+/* Input group for addon inputs */
+.input-group {
+  @apply flex;
+}
+
+.input-group .form-input {
+  @apply rounded-r-none border-r-0;
+}
+
+.input-group-addon {
+  @apply inline-flex items-center px-3 py-2 border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-sm rounded-r-md;
+}
+
+/* Badge Components */
+.badge {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+
+.badge-primary {
+  @apply bg-indigo-100 text-indigo-800;
+}
+
+.badge-secondary {
+  @apply bg-gray-100 text-gray-800;
+}
+
+.badge-success {
+  @apply bg-green-100 text-green-800;
+}
+
+.badge-danger {
+  @apply bg-red-100 text-red-800;
+}
+
+.badge-warning {
+  @apply bg-yellow-100 text-yellow-800;
+}
+
+.badge-info {
+  @apply bg-blue-100 text-blue-800;
+}
+
+/* Alert Components */
+.alert {
+  @apply rounded-md p-4 mb-4;
+}
+
+.alert-success {
+  @apply bg-green-50 border border-green-200;
+}
+
+.alert-success .alert-title {
+  @apply text-green-800;
+}
+
+.alert-success .alert-description {
+  @apply text-green-700;
+}
+
+.alert-error {
+  @apply bg-red-50 border border-red-200;
+}
+
+.alert-error .alert-title {
+  @apply text-red-800;
+}
+
+.alert-error .alert-description {
+  @apply text-red-700;
+}
+
+.alert-warning {
+  @apply bg-yellow-50 border border-yellow-200;
+}
+
+.alert-warning .alert-title {
+  @apply text-yellow-800;
+}
+
+.alert-warning .alert-description {
+  @apply text-yellow-700;
+}
+
+.alert-info {
+  @apply bg-blue-50 border border-blue-200;
+}
+
+.alert-info .alert-title {
+  @apply text-blue-800;
+}
+
+.alert-info .alert-description {
+  @apply text-blue-700;
+}
+
+/* Modal Components */
+.modal-overlay {
+  @apply fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity;
+}
+
+.modal-container {
+  @apply flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0;
+}
+
+.modal-panel {
+  @apply inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full;
+}
+
+.modal-header {
+  @apply px-6 py-4 border-b border-gray-200;
+}
+
+.modal-body {
+  @apply px-6 py-4;
+}
+
+.modal-footer {
+  @apply px-6 py-4 border-t border-gray-200 bg-gray-50 sm:flex sm:flex-row-reverse;
+}
+
+/* Loading Components */
+.loading-spinner {
+  @apply inline-block animate-spin rounded-full border-4 border-solid border-current border-r-transparent motion-reduce:animate-none;
+}
+
+.loading-dots {
+  @apply inline-block;
+}
+
+.loading-dots::after {
+  content: " ...";
+  animation: loading-dots 1s steps(5, end) infinite;
+}
+
+/* Navigation Components */
+.nav-tabs {
+  @apply flex space-x-8 border-b border-gray-200;
+}
+
+.nav-tab {
+  @apply py-2 px-1 border-b-2 font-medium text-sm transition-colors duration-200;
+}
+
+.nav-tab.active {
+  @apply border-indigo-500 text-indigo-600;
+}
+
+.nav-tab:not(.active) {
+  @apply border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300;
+}
+
+/* Breadcrumb Components */
+.breadcrumb {
+  @apply flex items-center space-x-2 text-sm text-gray-500;
+}
+
+.breadcrumb-item {
+  @apply flex items-center;
+}
+
+.breadcrumb-separator {
+  @apply mx-2 text-gray-400;
+}
+
+.breadcrumb-item.active {
+  @apply text-gray-900 font-medium;
+}
+
+/* Pagination Components */
+.pagination {
+  @apply flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6;
+}
+
+.pagination-info {
+  @apply text-sm text-gray-700;
+}
+
+.pagination-nav {
+  @apply isolate inline-flex -space-x-px rounded-md shadow-sm;
+}
+
+.pagination-btn {
+  @apply relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0;
+}
+
+.pagination-btn.active {
+  @apply z-10 bg-indigo-600 text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600;
+}
+
+.pagination-btn:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+/* Dropdown Components */
+.dropdown {
+  @apply relative inline-block text-left;
+}
+
+.dropdown-menu {
+  @apply absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none;
+}
+
+.dropdown-item {
+  @apply block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900;
+}
+
+.dropdown-divider {
+  @apply border-t border-gray-100 my-1;
+}
+
+/* Table Components */
+.table {
+  @apply min-w-full divide-y divide-gray-200;
+}
+
+.table-header {
+  @apply bg-gray-50;
+}
+
+.table-header-cell {
+  @apply px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider;
+}
+
+.table-body {
+  @apply bg-white divide-y divide-gray-200;
+}
+
+.table-row {
+  @apply hover:bg-gray-50;
+}
+
+.table-cell {
+  @apply px-6 py-4 whitespace-nowrap text-sm text-gray-900;
+}
+
+/* Avatar Components */
+.avatar {
+  @apply inline-flex items-center justify-center rounded-full;
+}
+
+.avatar-sm {
+  @apply h-6 w-6 text-xs;
+}
+
+.avatar-md {
+  @apply h-8 w-8 text-sm;
+}
+
+.avatar-lg {
+  @apply h-12 w-12 text-base;
+}
+
+.avatar-xl {
+  @apply h-16 w-16 text-lg;
+}
+
+/* Progress Components */
+.progress {
+  @apply w-full bg-gray-200 rounded-full;
+}
+
+.progress-bar {
+  @apply bg-indigo-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full transition-all duration-300;
+}
+
+/* Tooltip Components */
+.tooltip {
+  @apply absolute z-10 px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 invisible transition-opacity duration-300;
+}
+
+.tooltip.show {
+  @apply opacity-100 visible;
+}
+
+.tooltip-arrow {
+  @apply absolute w-2 h-2 bg-gray-900 transform rotate-45;
+}
+
+/* Status Indicators */
+.status-dot {
+  @apply inline-block w-2 h-2 rounded-full;
+}
+
+.status-online {
+  @apply bg-green-400;
+}
+
+.status-offline {
+  @apply bg-gray-400;
+}
+
+.status-busy {
+  @apply bg-red-400;
+}
+
+.status-away {
+  @apply bg-yellow-400;
+}
+
+/* Utility Classes */
+.text-balance {
+  text-wrap: balance;
+}
+
+.scrollbar-thin {
+  scrollbar-width: thin;
+}
+
+.scrollbar-hidden {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+/* Focus-visible support */
+.focus-visible-only:focus {
+  outline: none;
+}
+
+.focus-visible-only:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
