@@ -124,6 +124,25 @@ app.get('/health', (req, res) => {
 // API routes
 const API_PREFIX = '/api';
 
+// Main API route (THIS WAS MISSING)
+app.get(API_PREFIX, (req, res) => {
+    res.json({
+        success: true,
+        message: 'TimeSlice API is running!',
+        version: '1.0.0',
+        status: 'healthy',
+        timestamp: new Date().toISOString(),
+        documentation: '/api/docs',
+        endpoints: {
+            auth: '/api/auth',
+            slots: '/api/slots', 
+            bookings: '/api/bookings',
+            reviews: '/api/reviews',
+            wallet: '/api/wallet'
+        }
+    });
+});
+
 app.use(`${API_PREFIX}/auth`, authRoutes);
 app.use(`${API_PREFIX}/slots`, slotRoutes);
 app.use(`${API_PREFIX}/bookings`, bookingRoutes);

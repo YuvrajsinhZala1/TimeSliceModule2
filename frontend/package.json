@@ -24,11 +24,16 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "dev": "react-scripts start",
-    "dev:debug": "BROWSER=none react-scripts start > ../logs/frontend.log 2>&1",
+    "dev:debug": "set BROWSER=none && react-scripts start > ../logs/frontend.log 2>&1",
+    "dev:debug:watch": "set BROWSER=none && react-scripts start | tee ../logs/frontend.log",
     "build:analyze": "npm run build && npx serve -s build",
     "lint": "eslint src --ext .js,.jsx",
     "lint:fix": "eslint src --ext .js,.jsx --fix",
-    "debug:start": "react-scripts start --verbose > ../logs/frontend.log 2>&1"
+    "debug:start": "set REACT_APP_DEBUG=true && set BROWSER=none && react-scripts start",
+    "debug:verbose": "set DEBUG=* && set REACT_APP_DEBUG=true && react-scripts start > ../logs/frontend-verbose.log 2>&1",
+    "logs:view": "type ..\\logs\\frontend.log",
+    "logs:clear": "echo. > ..\\logs\\frontend.log",
+    "tailwind:watch": "npx tailwindcss -i ./src/styles/globals.css -o ./src/styles/output.css --watch"
   },
   "eslintConfig": {
     "extends": [

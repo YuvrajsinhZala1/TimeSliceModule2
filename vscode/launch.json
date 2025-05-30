@@ -1,0 +1,56 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug Frontend",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/frontend/node_modules/.bin/react-scripts",
+      "args": ["start"],
+      "env": {
+        "NODE_ENV": "development",
+        "BROWSER": "none",
+        "REACT_APP_DEBUG": "true"
+      },
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}/frontend",
+      "outputCapture": "std"
+    },
+    {
+      "name": "Debug Backend",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/backend/server.js",
+      "env": {
+        "NODE_ENV": "development",
+        "DEBUG": "*",
+        "LOG_LEVEL": "debug"
+      },
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}/backend",
+      "restart": true,
+      "runtimeExecutable": "node",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "Debug Full Stack",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/backend/server.js",
+      "env": {
+        "NODE_ENV": "development",
+        "DEBUG": "*",
+        "LOG_LEVEL": "debug"
+      },
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}/backend",
+      "compounds": ["Debug Frontend", "Debug Backend"]
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Launch Full Stack",
+      "configurations": ["Debug Backend", "Debug Frontend"]
+    }
+  ]
+}

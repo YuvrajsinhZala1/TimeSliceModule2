@@ -82,9 +82,8 @@ const userSchema = new mongoose.Schema({
     versionKey: false
 });
 
-// Indexes for better performance
-userSchema.index({ email: 1 });
-userSchema.index({ username: 1 });
+// Remove manual indexes (they're created automatically from unique: true)
+// Only add compound indexes that aren't duplicated
 userSchema.index({ skills: 1 });
 userSchema.index({ 'rating.average': -1 });
 

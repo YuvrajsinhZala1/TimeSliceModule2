@@ -24,14 +24,6 @@ morgan.token('body', (req) => {
     return JSON.stringify(sanitizedBody);
 });
 
-// Custom token for response time with color coding
-morgan.token('response-time-colored', (req, res) => {
-    const responseTime = parseFloat(morgan['response-time'](req, res));
-    if (responseTime > 1000) return `${responseTime}ms (SLOW)`;
-    if (responseTime > 500) return `${responseTime}ms (MODERATE)`;
-    return `${responseTime}ms`;
-});
-
 // Development format with colors and detailed info
 const developmentFormat = morgan((tokens, req, res) => {
     const status = tokens.status(req, res);
@@ -54,7 +46,7 @@ const developmentFormat = morgan((tokens, req, res) => {
         methodColor + method + '\x1b[0m', // Colored method
         tokens.url(req, res),
         statusColor + status + '\x1b[0m', // Colored status
-        tokens['response-time-colored'](req, res),
+        tokens['response-time'](req, res) + 'ms',
         'User:', tokens.user(req, res),
         tokens.body(req, res) ? 'Body: ' + tokens.body(req, res) : ''
     ].filter(Boolean).join(' ');
@@ -87,11 +79,6 @@ const productionFormat = morgan((tokens, req, res) => {
     return JSON.stringify(logData);
 });
 
-// Create morgan middleware based on environment
-const requestLogger = process.env.NODE_ENV === 'production' 
-    ? morgan(productionFormat, { stream: logger.stream })
-    : morgan(developmentFormat);
-
 // Skip logging for health check endpoints
 const skipHealthCheck = (req, res) => {
     return req.url === '/health' || req.url === '/api/health';
@@ -108,14 +95,15 @@ const shouldSkipLogging = (req, res) => {
            (process.env.NODE_ENV === 'production' && skipStatic(req, res));
 };
 
-// Apply skip function to morgan
-const conditionalLogger = morgan(
-    process.env.NODE_ENV === 'production' ? productionFormat : developmentFormat,
-    {
-        stream: logger.stream,
+// Create morgan middleware based on environment
+const requestLogger = process.env.NODE_ENV === 'production' 
+    ? morgan(productionFormat, { 
+        stream: { write: (message) => logger.info(message.trim()) },
         skip: shouldSkipLogging
-    }
-);
+      })
+    : morgan(developmentFormat, {
+        skip: shouldSkipLogging
+      });
 
 // Custom request/response logging middleware
 const customRequestLogger = (req, res, next) => {
@@ -173,51 +161,8 @@ const errorRequestLogger = (err, req, res, next) => {
     next(err);
 };
 
-// API metrics logger (for monitoring)
-const metricsLogger = {
-    requests: new Map(),
-    errors: new Map(),
-    
-    logRequest: (method, endpoint, duration, statusCode) => {
-        const key = `${method}:${endpoint}`;
-        const current = metricsLogger.requests.get(key) || { count: 0, totalTime: 0, errors: 0 };
-        
-        current.count++;
-        current.totalTime += duration;
-        
-        if (statusCode >= 400) {
-            current.errors++;
-        }
-        
-        metricsLogger.requests.set(key, current);
-    },
-    
-    getMetrics: () => {
-        const metrics = {};
-        
-        metricsLogger.requests.forEach((data, key) => {
-            metrics[key] = {
-                count: data.count,
-                averageTime: Math.round(data.totalTime / data.count),
-                errorRate: data.errors / data.count,
-                errors: data.errors
-            };
-        });
-        
-        return metrics;
-    },
-    
-    reset: () => {
-        metricsLogger.requests.clear();
-        metricsLogger.errors.clear();
-    }
-};
-
 module.exports = {
-    requestLogger: conditionalLogger,
+    requestLogger,
     customRequestLogger,
-    errorRequestLogger,
-    metricsLogger,
-    developmentFormat,
-    productionFormat
+    errorRequestLogger
 };

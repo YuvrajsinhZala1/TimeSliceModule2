@@ -6,8 +6,7 @@ const connectDB = async () => {
         logger.info('Attempting to connect to MongoDB...');
         
         const conn = await mongoose.connect(process.env.MONGODB_URI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
+            // Removed deprecated options
             serverSelectionTimeoutMS: 10000, // 10 seconds timeout
             socketTimeoutMS: 45000, // 45 seconds timeout
             family: 4 // Use IPv4, skip trying IPv6

@@ -1,11 +1,3 @@
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
-
-
 import React, { useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
@@ -59,7 +51,7 @@ function App() {
     <div className="App min-h-screen bg-gray-50">
       <Header />
       
-      <main className="flex-1">
+      <main id="main-content" className="flex-1">
         <Routes>
           {/* Public Routes */}
           <Route path="/" element={<Home />} />
