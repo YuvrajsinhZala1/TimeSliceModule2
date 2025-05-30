@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { bookingService } from '../services/bookingService';
 import { reviewService } from '../services/reviewService';
 import { logInfo, logError, logInteraction } from '../utils/logger';
 import { formatDate, formatCredits } from '../utils/helpers';
-import { STATUS_COLORS, BOOKING_STATUS } from '../utils/constants';
+import { STATUS_COLORS } from '../utils/constants';
 import Loading from '../components/Common/Loading';
 import ErrorMessage from '../components/Common/ErrorMessage';
 
@@ -20,12 +20,7 @@ const MyBookings = () => {
   const [showReviewModal, setShowReviewModal] = useState(null);
   const [reviewData, setReviewData] = useState({ rating: 5, comment: '' });
 
-  useEffect(() => {
-    logInfo('MyBookings page loaded');
-    fetchBookings();
-  }, [activeTab, statusFilter]);
-
-  const fetchBookings = async () => {
+  const fetchBookings = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -49,7 +44,12 @@ const MyBookings = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [activeTab, statusFilter]);
+
+  useEffect(() => {
+    logInfo('MyBookings page loaded');
+    fetchBookings();
+  }, [fetchBookings]);
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);

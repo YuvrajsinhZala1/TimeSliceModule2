@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { toast } from 'react-toastify';
 import { slotService } from '../services/slotService';
 import { logInfo, logError, logInteraction } from '../utils/logger';
 import { formatDate, formatCredits } from '../utils/helpers';
-import { SLOT_CATEGORIES, MEETING_PLATFORMS, VALIDATION_RULES } from '../utils/constants';
+import { SLOT_CATEGORIES, MEETING_PLATFORMS } from '../utils/constants';
 import Loading from '../components/Common/Loading';
 import ErrorMessage from '../components/Common/ErrorMessage';
 
@@ -33,14 +33,8 @@ const MySlots = () => {
   });
   
   const [skillInput, setSkillInput] = useState('');
-  const [tagInput, setTagInput] = useState('');
 
-  useEffect(() => {
-    logInfo('MySlots page loaded');
-    fetchSlots();
-  }, [statusFilter]);
-
-  const fetchSlots = async () => {
+  const fetchSlots = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -57,7 +51,12 @@ const MySlots = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [statusFilter]);
+
+  useEffect(() => {
+    logInfo('MySlots page loaded');
+    fetchSlots();
+  }, [fetchSlots]);
 
   const resetForm = () => {
     setFormData({
@@ -76,7 +75,6 @@ const MySlots = () => {
       outcomes: ''
     });
     setSkillInput('');
-    setTagInput('');
     setEditingSlot(null);
   };
 
@@ -145,24 +143,6 @@ const MySlots = () => {
     setFormData(prev => ({
       ...prev,
       skills: prev.skills.filter(skill => skill !== skillToRemove)
-    }));
-  };
-
-  const handleAddTag = () => {
-    const tag = tagInput.trim();
-    if (tag && !formData.tags.includes(tag) && formData.tags.length < 10) {
-      setFormData(prev => ({
-        ...prev,
-        tags: [...prev.tags, tag]
-      }));
-      setTagInput('');
-    }
-  };
-
-  const handleRemoveTag = (tagToRemove) => {
-    setFormData(prev => ({
-      ...prev,
-      tags: prev.tags.filter(tag => tag !== tagToRemove)
     }));
   };
 
@@ -420,7 +400,7 @@ const MySlots = () => {
                           onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
                           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                           placeholder="e.g., React.js Code Review Session"
-                          maxLength={VALIDATION_RULES.SLOT_TITLE.MAX_LENGTH}
+                          maxLength={100}
                         />
                       </div>
 
@@ -436,7 +416,7 @@ const MySlots = () => {
                           onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
                           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                           placeholder="Describe what you'll help with in this session..."
-                          maxLength={VALIDATION_RULES.SLOT_DESCRIPTION.MAX_LENGTH}
+                          maxLength={500}
                         />
                       </div>
 

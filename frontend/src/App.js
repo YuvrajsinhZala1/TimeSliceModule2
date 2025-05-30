@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
-import { logInfo, logError } from './utils/logger';
+import { logInfo } from './utils/logger';
 
 // Layout Components
 import Header from './components/Layout/Header';
