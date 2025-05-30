@@ -10,6 +10,9 @@ import { formatDate, formatCredits } from '../utils/helpers';
 import { STATUS_COLORS } from '../utils/constants';
 import Loading from '../components/Common/Loading';
 import ErrorMessage from '../components/Common/ErrorMessage';
+import StatsCard from '../components/Dashboard/StatsCard';
+import GlassmorphicCard from '../components/Common/GlassmorphicCard';
+import { useAnimation } from '../hooks/useAnimation';
 
 const Dashboard = () => {
   const { user } = useAuth();
@@ -22,9 +25,10 @@ const Dashboard = () => {
   const [recentBookings, setRecentBookings] = useState([]);
   const [upcomingSessions, setUpcomingSessions] = useState([]);
   const [error, setError] = useState(null);
+  const { isVisible, elementRef } = useAnimation();
 
   useEffect(() => {
-    logInfo('Dashboard component mounted');
+    logInfo('Enhanced Dashboard component mounted');
     fetchDashboardData();
   }, []);
 
@@ -58,7 +62,7 @@ const Dashboard = () => {
       
       setUpcomingSessions(upcoming);
 
-      logInfo('Dashboard data loaded successfully');
+      logInfo('Enhanced Dashboard data loaded successfully');
     } catch (error) {
       logError('Error loading dashboard data:', error);
       setError('Failed to load dashboard data');
@@ -70,334 +74,301 @@ const Dashboard = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Loading size="large" text="Loading dashboard..." />
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-blue-50">
+        <Loading size="large" text="Loading your personalized dashboard..." />
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4">
+      <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-slate-50 to-blue-50">
         <ErrorMessage message={error} />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-2xl font-bold text-gray-900">
-            Welcome back, {user.username}! 👋
-          </h1>
-          <p className="text-gray-600">Here's what's happening with your TimeSlice account</p>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      {/* Animated Background Elements */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-blue-400/20 to-cyan-400/20 rounded-full blur-3xl animate-float" />
+        <div className="absolute top-40 right-20 w-96 h-96 bg-gradient-to-r from-purple-400/20 to-pink-400/20 rounded-full blur-3xl animate-float-delayed" />
+        <div className="absolute bottom-20 left-1/3 w-64 h-64 bg-gradient-to-r from-green-400/20 to-teal-400/20 rounded-full blur-3xl animate-float" />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Header Section */}
+        <div ref={elementRef} className={`mb-8 transition-all duration-1000 ${isVisible ? 'animate-slide-up opacity-100' : 'opacity-0 translate-y-10'}`}>
+          <div className="text-center mb-8">
+            <h1 className="text-4xl md:text-5xl font-black bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
+              Welcome back, {user.username}! 
+              <span className="inline-block animate-bounce ml-2">👋</span>
+            </h1>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Your personalized learning dashboard is ready with insights and opportunities
+            </p>
+          </div>
         </div>
 
-        {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          {/* Credits */}
-          <div className="bg-white overflow-hidden shadow rounded-lg">
-            <div className="p-5">
-              <div className="flex items-center">
-                <div className="flex-shrink-0">
-                  <div className="w-8 h-8 bg-green-500 rounded-md flex items-center justify-center">
-                    <span className="text-white text-sm">💰</span>
-                  </div>
-                </div>
-                <div className="ml-5 w-0 flex-1">
-                  <dl>
-                    <dt className="text-sm font-medium text-gray-500 truncate">
-                      Available Credits
-                    </dt>
-                    <dd className="text-lg font-medium text-gray-900">
-                      {formatCredits(user.credits)}
-                    </dd>
-                  </dl>
-                </div>
-              </div>
-            </div>
-            <div className="bg-gray-50 px-5 py-3">
-              <div className="text-sm">
-                <Link to="/profile" className="font-medium text-indigo-600 hover:text-indigo-500">
-                  View wallet
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* Total Bookings */}
-          <div className="bg-white overflow-hidden shadow rounded-lg">
-            <div className="p-5">
-              <div className="flex items-center">
-                <div className="flex-shrink-0">
-                  <div className="w-8 h-8 bg-blue-500 rounded-md flex items-center justify-center">
-                    <span className="text-white text-sm">📅</span>
-                  </div>
-                </div>
-                <div className="ml-5 w-0 flex-1">
-                  <dl>
-                    <dt className="text-sm font-medium text-gray-500 truncate">
-                      Total Bookings
-                    </dt>
-                    <dd className="text-lg font-medium text-gray-900">
-                      {stats.bookings?.asStudent?.total || 0}
-                    </dd>
-                  </dl>
-                </div>
-              </div>
-            </div>
-            <div className="bg-gray-50 px-5 py-3">
-              <div className="text-sm">
-                <Link to="/my-bookings" className="font-medium text-indigo-600 hover:text-indigo-500">
-                  View all bookings
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* Active Slots */}
-          <div className="bg-white overflow-hidden shadow rounded-lg">
-            <div className="p-5">
-              <div className="flex items-center">
-                <div className="flex-shrink-0">
-                  <div className="w-8 h-8 bg-purple-500 rounded-md flex items-center justify-center">
-                    <span className="text-white text-sm">⏰</span>
-                  </div>
-                </div>
-                <div className="ml-5 w-0 flex-1">
-                  <dl>
-                    <dt className="text-sm font-medium text-gray-500 truncate">
-                      Active Slots
-                    </dt>
-                    <dd className="text-lg font-medium text-gray-900">
-                      {stats.slots?.active || 0}
-                    </dd>
-                  </dl>
-                </div>
-              </div>
-            </div>
-            <div className="bg-gray-50 px-5 py-3">
-              <div className="text-sm">
-                <Link to="/my-slots" className="font-medium text-indigo-600 hover:text-indigo-500">
-                  Manage slots
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* Sessions as Mentor */}
-          <div className="bg-white overflow-hidden shadow rounded-lg">
-            <div className="p-5">
-              <div className="flex items-center">
-                <div className="flex-shrink-0">
-                  <div className="w-8 h-8 bg-orange-500 rounded-md flex items-center justify-center">
-                    <span className="text-white text-sm">🎓</span>
-                  </div>
-                </div>
-                <div className="ml-5 w-0 flex-1">
-                  <dl>
-                    <dt className="text-sm font-medium text-gray-500 truncate">
-                      Sessions as Mentor
-                    </dt>
-                    <dd className="text-lg font-medium text-gray-900">
-                      {stats.bookings?.asMentor?.completed || 0}
-                    </dd>
-                  </dl>
-                </div>
-              </div>
-            </div>
-            <div className="bg-gray-50 px-5 py-3">
-              <div className="text-sm">
-                <Link to="/my-bookings?role=mentor" className="font-medium text-indigo-600 hover:text-indigo-500">
-                  View mentor sessions
-                </Link>
-              </div>
-            </div>
-          </div>
+        {/* Enhanced Stats Cards */}
+        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8 transition-all duration-1000 delay-200 ${isVisible ? 'animate-slide-up opacity-100' : 'opacity-0 translate-y-10'}`}>
+          <StatsCard
+            title="Available Credits"
+            value={user.credits}
+            icon="💰"
+            color="green"
+            trend={12}
+            subtitle="Ready to spend"
+            onClick={() => window.location.href = '/profile?tab=wallet'}
+          />
+          
+          <StatsCard
+            title="Total Bookings"
+            value={stats.bookings?.asStudent?.total || 0}
+            icon="📅"
+            color="blue"
+            trend={8}
+            subtitle="Sessions booked"
+            onClick={() => window.location.href = '/my-bookings'}
+          />
+          
+          <StatsCard
+            title="Active Slots"
+            value={stats.slots?.active || 0}
+            icon="⏰"
+            color="purple"
+            trend={-3}
+            subtitle="Available now"
+            onClick={() => window.location.href = '/my-slots'}
+          />
+          
+          <StatsCard
+            title="Mentor Sessions"
+            value={stats.bookings?.asMentor?.completed || 0}
+            icon="🎓"
+            color="orange"
+            trend={25}
+            subtitle="Teaching completed"
+            onClick={() => window.location.href = '/my-bookings?role=mentor'}
+          />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Upcoming Sessions */}
-          <div className="bg-white shadow rounded-lg">
-            <div className="px-6 py-4 border-b border-gray-200">
-              <h2 className="text-lg font-medium text-gray-900">Upcoming Sessions</h2>
-            </div>
+          {/* Upcoming Sessions with Enhanced Design */}
+          <GlassmorphicCard className={`transition-all duration-1000 delay-400 ${isVisible ? 'animate-slide-up opacity-100' : 'opacity-0 translate-y-10'}`}>
             <div className="p-6">
-              {upcomingSessions.length > 0 ? (
-                <div className="space-y-4">
-                  {upcomingSessions.slice(0, 3).map((booking) => (
-                    <div key={booking._id} className="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
-                      <div className="flex-shrink-0">
-                        <div className="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center">
-                          <span className="text-indigo-600 text-sm font-medium">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center">
+                  <span className="text-white text-lg">📅</span>
+                </div>
+                <h2 className="text-xl font-bold text-gray-900">Upcoming Sessions</h2>
+                <div className="ml-auto">
+                  <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                    {upcomingSessions.length} scheduled
+                  </span>
+                </div>
+              </div>
+              
+              <div className="space-y-4">
+                {upcomingSessions.length > 0 ? (
+                  upcomingSessions.slice(0, 3).map((booking, index) => (
+                    <div 
+                      key={booking._id} 
+                      className="group p-4 rounded-xl bg-gradient-to-r from-blue-50 to-cyan-50 hover:from-blue-100 hover:to-cyan-100 transition-all duration-300 hover:scale-102 border border-blue-100"
+                    >
+                      <div className="flex items-center space-x-4">
+                        <div className="flex-shrink-0">
+                          <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center text-white font-bold group-hover:scale-110 transition-transform duration-300">
                             {booking.slotId.title.charAt(0)}
+                          </div>
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-lg font-semibold text-gray-900 truncate group-hover:text-blue-600 transition-colors">
+                            {booking.slotId.title}
+                          </p>
+                          <p className="text-sm text-gray-600 flex items-center gap-2">
+                            <span>🕒</span>
+                            {formatDate(booking.slotId.dateTime, 'MMM dd, yyyy - h:mm a')}
+                          </p>
+                        </div>
+                        <div className="flex-shrink-0">
+                          <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${STATUS_COLORS[booking.status]}`}>
+                            {booking.status}
                           </span>
                         </div>
                       </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium text-gray-900 truncate">
-                          {booking.slotId.title}
-                        </p>
-                        <p className="text-sm text-gray-500">
-                          {formatDate(booking.slotId.dateTime, 'MMM dd, yyyy - h:mm a')}
-                        </p>
-                      </div>
-                      <div className="flex-shrink-0">
-                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${STATUS_COLORS[booking.status]}`}>
-                          {booking.status}
-                        </span>
-                      </div>
                     </div>
-                  ))}
-                  <div className="text-center">
+                  ))
+                ) : (
+                  <div className="text-center py-12">
+                    <div className="w-16 h-16 bg-gradient-to-r from-blue-100 to-cyan-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                      <span className="text-2xl">📅</span>
+                    </div>
+                    <p className="text-gray-500 mb-4">No upcoming sessions</p>
+                    <Link
+                      to="/explore"
+                      className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-xl font-medium hover:from-blue-600 hover:to-cyan-600 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-blue-500/25"
+                    >
+                      <span>🔍</span>
+                      <span className="ml-2">Explore Available Slots</span>
+                    </Link>
+                  </div>
+                )}
+                
+                {upcomingSessions.length > 0 && (
+                  <div className="text-center pt-4 border-t border-blue-100">
                     <Link
                       to="/my-bookings"
-                      className="text-sm font-medium text-indigo-600 hover:text-indigo-500"
+                      className="text-blue-600 hover:text-blue-800 font-medium text-sm transition-colors duration-300 hover:underline"
                     >
                       View all sessions →
                     </Link>
                   </div>
-                </div>
-              ) : (
-                <div className="text-center py-6">
-                  <div className="text-gray-400 text-4xl mb-4">📅</div>
-                  <p className="text-gray-500 mb-4">No upcoming sessions</p>
-                  <Link
-                    to="/explore"
-                    className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-indigo-600 bg-indigo-100 hover:bg-indigo-200"
-                  >
-                    Explore available slots
-                  </Link>
-                </div>
-              )}
+                )}
+              </div>
             </div>
-          </div>
+          </GlassmorphicCard>
 
-          {/* Recent Activity */}
-          <div className="bg-white shadow rounded-lg">
-            <div className="px-6 py-4 border-b border-gray-200">
-              <h2 className="text-lg font-medium text-gray-900">Recent Activity</h2>
-            </div>
+          {/* Recent Activity with Enhanced Design */}
+          <GlassmorphicCard className={`transition-all duration-1000 delay-500 ${isVisible ? 'animate-slide-up opacity-100' : 'opacity-0 translate-y-10'}`}>
             <div className="p-6">
-              {recentBookings.length > 0 ? (
-                <div className="space-y-4">
-                  {recentBookings.slice(0, 3).map((booking) => (
-                    <div key={booking._id} className="flex items-center space-x-4">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
+                  <span className="text-white text-lg">📊</span>
+                </div>
+                <h2 className="text-xl font-bold text-gray-900">Recent Activity</h2>
+                <div className="ml-auto">
+                  <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
+                    {recentBookings.length} activities
+                  </span>
+                </div>
+              </div>
+              
+              <div className="space-y-4">
+                {recentBookings.length > 0 ? (
+                  recentBookings.slice(0, 3).map((booking, index) => (
+                    <div key={booking._id} className="group flex items-center space-x-4 p-3 rounded-xl hover:bg-purple-50 transition-all duration-300">
                       <div className="flex-shrink-0">
-                        <div className="w-2 h-2 bg-indigo-400 rounded-full"></div>
+                        <div className="w-3 h-3 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full group-hover:scale-125 transition-transform duration-300"></div>
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm text-gray-900">
-                          {booking.status === 'completed' ? 'Completed' : 'Booked'} session: {' '}
-                          <span className="font-medium">{booking.slotId.title}</span>
+                        <p className="text-sm font-medium text-gray-900 group-hover:text-purple-600 transition-colors">
+                          {booking.status === 'completed' ? 'Completed' : 'Booked'} session:{' '}
+                          <span className="font-semibold">{booking.slotId.title}</span>
                         </p>
-                        <p className="text-sm text-gray-500">
+                        <p className="text-xs text-gray-500 flex items-center gap-1">
+                          <span>🕒</span>
                           {formatDate(booking.createdAt)}
                         </p>
                       </div>
                       <div className="flex-shrink-0">
-                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${STATUS_COLORS[booking.status]}`}>
+                        <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${STATUS_COLORS[booking.status]}`}>
                           {booking.status}
                         </span>
                       </div>
                     </div>
-                  ))}
-                  <div className="text-center pt-4">
+                  ))
+                ) : (
+                  <div className="text-center py-12">
+                    <div className="w-16 h-16 bg-gradient-to-r from-purple-100 to-pink-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                      <span className="text-2xl">📊</span>
+                    </div>
+                    <p className="text-gray-500 mb-4">No recent activity</p>
+                    <Link
+                      to="/explore"
+                      className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl font-medium hover:from-purple-600 hover:to-pink-600 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-purple-500/25"
+                    >
+                      <span>🚀</span>
+                      <span className="ml-2">Start Exploring</span>
+                    </Link>
+                  </div>
+                )}
+                
+                {recentBookings.length > 0 && (
+                  <div className="text-center pt-4 border-t border-purple-100">
                     <Link
                       to="/my-bookings"
-                      className="text-sm font-medium text-indigo-600 hover:text-indigo-500"
+                      className="text-purple-600 hover:text-purple-800 font-medium text-sm transition-colors duration-300 hover:underline"
                     >
                       View all activity →
                     </Link>
                   </div>
-                </div>
-              ) : (
-                <div className="text-center py-6">
-                  <div className="text-gray-400 text-4xl mb-4">📊</div>
-                  <p className="text-gray-500 mb-4">No recent activity</p>
-                  <Link
-                    to="/explore"
-                    className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-indigo-600 bg-indigo-100 hover:bg-indigo-200"
-                  >
-                    Start exploring
-                  </Link>
-                </div>
-              )}
+                )}
+              </div>
             </div>
-          </div>
+          </GlassmorphicCard>
         </div>
 
-        {/* Quick Actions */}
-        <div className="mt-8 bg-white shadow rounded-lg">
-          <div className="px-6 py-4 border-b border-gray-200">
-            <h2 className="text-lg font-medium text-gray-900">Quick Actions</h2>
-          </div>
+        {/* Enhanced Quick Actions */}
+        <GlassmorphicCard className={`mt-8 transition-all duration-1000 delay-600 ${isVisible ? 'animate-slide-up opacity-100' : 'opacity-0 translate-y-10'}`}>
           <div className="p-6">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-teal-500 rounded-xl flex items-center justify-center">
+                <span className="text-white text-lg">⚡</span>
+              </div>
+              <h2 className="text-xl font-bold text-gray-900">Quick Actions</h2>
+            </div>
+            
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              <Link
-                to="/explore"
-                className="flex items-center p-4 bg-indigo-50 rounded-lg hover:bg-indigo-100 transition-colors duration-200"
-              >
-                <div className="flex-shrink-0">
-                  <div className="w-8 h-8 bg-indigo-600 rounded-md flex items-center justify-center">
-                    <span className="text-white text-sm">🔍</span>
+              {[
+                {
+                  to: "/explore",
+                  icon: "🔍",
+                  title: "Book a Session",
+                  description: "Find experts to help you",
+                  gradient: "from-blue-500 to-cyan-500",
+                  hoverGradient: "from-blue-600 to-cyan-600"
+                },
+                {
+                  to: "/my-slots",
+                  icon: "➕",
+                  title: "Create Slot",
+                  description: "Share your expertise",
+                  gradient: "from-green-500 to-teal-500",
+                  hoverGradient: "from-green-600 to-teal-600"
+                },
+                {
+                  to: "/my-bookings",
+                  icon: "📅",
+                  title: "My Bookings",
+                  description: "Manage your sessions",
+                  gradient: "from-purple-500 to-pink-500",
+                  hoverGradient: "from-purple-600 to-pink-600"
+                },
+                {
+                  to: "/profile",
+                  icon: "👤",
+                  title: "Profile",
+                  description: "Update your info",
+                  gradient: "from-orange-500 to-red-500",
+                  hoverGradient: "from-orange-600 to-red-600"
+                }
+              ].map((action, index) => (
+                <Link
+                  key={index}
+                  to={action.to}
+                  className="group relative p-6 rounded-2xl bg-white border border-gray-100 hover:border-transparent transition-all duration-300 hover:scale-105 hover:shadow-xl overflow-hidden"
+                >
+                  <div className={`absolute inset-0 bg-gradient-to-r ${action.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
+                  <div className={`absolute inset-0 bg-gradient-to-r ${action.hoverGradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
+                  
+                  <div className="relative z-10">
+                    <div className={`w-12 h-12 bg-gradient-to-r ${action.gradient} rounded-xl flex items-center justify-center text-white text-xl mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                      {action.icon}
+                    </div>
+                    <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 transition-all duration-300">
+                      {action.title}
+                    </h3>
+                    <p className="text-gray-600 text-sm group-hover:text-gray-700 transition-colors">
+                      {action.description}
+                    </p>
                   </div>
-                </div>
-                <div className="ml-3">
-                  <p className="text-sm font-medium text-indigo-900">Book a Session</p>
-                  <p className="text-sm text-indigo-700">Find experts to help you</p>
-                </div>
-              </Link>
-
-              <Link
-                to="/my-slots"
-                className="flex items-center p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors duration-200"
-              >
-                <div className="flex-shrink-0">
-                  <div className="w-8 h-8 bg-green-600 rounded-md flex items-center justify-center">
-                    <span className="text-white text-sm">➕</span>
-                  </div>
-                </div>
-                <div className="ml-3">
-                  <p className="text-sm font-medium text-green-900">Create Slot</p>
-                  <p className="text-sm text-green-700">Share your expertise</p>
-                </div>
-              </Link>
-
-              <Link
-                to="/my-bookings"
-                className="flex items-center p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors duration-200"
-              >
-                <div className="flex-shrink-0">
-                  <div className="w-8 h-8 bg-blue-600 rounded-md flex items-center justify-center">
-                    <span className="text-white text-sm">📅</span>
-                  </div>
-                </div>
-                <div className="ml-3">
-                  <p className="text-sm font-medium text-blue-900">My Bookings</p>
-                  <p className="text-sm text-blue-700">Manage your sessions</p>
-                </div>
-              </Link>
-
-              <Link
-                to="/profile"
-                className="flex items-center p-4 bg-purple-50 rounded-lg hover:bg-purple-100 transition-colors duration-200"
-              >
-                <div className="flex-shrink-0">
-                  <div className="w-8 h-8 bg-purple-600 rounded-md flex items-center justify-center">
-                    <span className="text-white text-sm">👤</span>
-                  </div>
-                </div>
-                <div className="ml-3">
-                  <p className="text-sm font-medium text-purple-900">Profile</p>
-                  <p className="text-sm text-purple-700">Update your info</p>
-                </div>
-              </Link>
+                </Link>
+              ))}
             </div>
           </div>
-        </div>
+        </GlassmorphicCard>
       </div>
     </div>
   );
