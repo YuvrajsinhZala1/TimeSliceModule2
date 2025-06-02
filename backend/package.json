@@ -5,9 +5,15 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js",
-    "debug": "nodemon --inspect server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon server-debug.js",
+    "debug": "nodemon --inspect server-debug.js",
+    "debug-brk": "nodemon --inspect-brk server-debug.js",
+    "logs": "tail -f logs/combined.log",
+    "logs:error": "tail -f logs/error.log",
+    "logs:debug": "tail -f logs/debug.log",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "seed": "node scripts/seedDatabase.js",
+    "check-env": "node scripts/checkEnvironment.js"
   },
   "keywords": ["timeslice", "time-marketplace", "mern"],
   "author": "Your Name",

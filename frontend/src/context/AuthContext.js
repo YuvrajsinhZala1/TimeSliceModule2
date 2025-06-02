@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer, useCallback } from 'react';
-import { authService } from '../services/authService';
+import { authService } from '../services/authService'; // Keep this as named import
 import { logInfo, logError, logDebug } from '../utils/logger';
 
 // Initial state
@@ -123,11 +123,12 @@ export function AuthProvider({ children }) {
       }
     } catch (error) {
       logError('Login error:', error);
+      const errorMessage = error.message || 'Login failed';
       dispatch({
         type: AUTH_ACTIONS.LOGIN_FAILURE,
-        payload: error.message || 'Login failed'
+        payload: errorMessage
       });
-      return { success: false, message: error.message || 'Login failed' };
+      return { success: false, message: errorMessage };
     }
   }, []);
 
@@ -156,11 +157,12 @@ export function AuthProvider({ children }) {
       }
     } catch (error) {
       logError('Signup error:', error);
+      const errorMessage = error.message || 'Signup failed';
       dispatch({
         type: AUTH_ACTIONS.SIGNUP_FAILURE,
-        payload: error.message || 'Signup failed'
+        payload: errorMessage
       });
-      return { success: false, message: error.message || 'Signup failed' };
+      return { success: false, message: errorMessage };
     }
   }, []);
 
