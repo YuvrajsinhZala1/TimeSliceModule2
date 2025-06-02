@@ -1,0 +1,527 @@
+/* Professional Loading Component Styles */
+
+.loading {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loaderContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+}
+
+.loadingText {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  font-weight: var(--weight-medium);
+  text-align: center;
+  margin-top: var(--spacing-xs);
+  animation: fadeInOut 2s ease-in-out infinite;
+}
+
+/* Size Variants */
+.small {
+  --loader-size: 16px;
+  --loader-thickness: 2px;
+}
+
+.medium {
+  --loader-size: 24px;
+  --loader-thickness: 3px;
+}
+
+.large {
+  --loader-size: 32px;
+  --loader-thickness: 4px;
+}
+
+.extraLarge {
+  --loader-size: 48px;
+  --loader-thickness: 6px;
+}
+
+/* Color Variants */
+.primary {
+  --loader-color: var(--primary-color);
+  --loader-bg: rgba(99, 102, 241, 0.2);
+}
+
+.secondary {
+  --loader-color: var(--secondary-color);
+  --loader-bg: rgba(100, 116, 139, 0.2);
+}
+
+.success {
+  --loader-color: var(--success-color);
+  --loader-bg: rgba(16, 185, 129, 0.2);
+}
+
+.warning {
+  --loader-color: var(--warning-color);
+  --loader-bg: rgba(245, 158, 11, 0.2);
+}
+
+.error {
+  --loader-color: var(--error-color);
+  --loader-bg: rgba(239, 68, 68, 0.2);
+}
+
+.white {
+  --loader-color: white;
+  --loader-bg: rgba(255, 255, 255, 0.2);
+}
+
+.gray {
+  --loader-color: var(--gray-500);
+  --loader-bg: rgba(156, 163, 175, 0.2);
+}
+
+/* Layout Modifiers */
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: var(--z-overlay);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(4px);
+  z-index: var(--z-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Spinner Variant */
+.spinner {
+  width: var(--loader-size);
+  height: var(--loader-size);
+  position: relative;
+}
+
+.spinnerInner {
+  width: 100%;
+  height: 100%;
+  border: var(--loader-thickness) solid var(--loader-bg);
+  border-top: var(--loader-thickness) solid var(--loader-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Dots Variant */
+.dots {
+  display: flex;
+  gap: calc(var(--loader-size) * 0.25);
+  align-items: center;
+}
+
+.dot {
+  width: calc(var(--loader-size) * 0.3);
+  height: calc(var(--loader-size) * 0.3);
+  background: var(--loader-color);
+  border-radius: 50%;
+  animation: dotBounce 1.4s ease-in-out infinite both;
+}
+
+.dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0s;
+}
+
+/* Pulse Variant */
+.pulse {
+  width: var(--loader-size);
+  height: var(--loader-size);
+  position: relative;
+}
+
+.pulseRing {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: var(--loader-thickness) solid var(--loader-color);
+  border-radius: 50%;
+  animation: pulseRing 2s ease-out infinite;
+}
+
+.pulseCore {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60%;
+  height: 60%;
+  background: var(--loader-color);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: pulseCore 2s ease-out infinite;
+}
+
+/* Bars Variant */
+.bars {
+  display: flex;
+  gap: calc(var(--loader-size) * 0.1);
+  align-items: flex-end;
+  height: var(--loader-size);
+}
+
+.bar {
+  width: calc(var(--loader-size) * 0.2);
+  background: var(--loader-color);
+  border-radius: calc(var(--loader-size) * 0.1);
+  animation: barBounce 1.2s ease-in-out infinite;
+}
+
+.bar:nth-child(1) {
+  animation-delay: -0.24s;
+}
+
+.bar:nth-child(2) {
+  animation-delay: -0.12s;
+}
+
+.bar:nth-child(3) {
+  animation-delay: 0s;
+}
+
+.bar:nth-child(4) {
+  animation-delay: 0.12s;
+}
+
+/* Wave Variant */
+.wave {
+  display: flex;
+  gap: calc(var(--loader-size) * 0.05);
+  align-items: center;
+  height: var(--loader-size);
+}
+
+.waveBar {
+  width: calc(var(--loader-size) * 0.15);
+  height: calc(var(--loader-size) * 0.3);
+  background: var(--loader-color);
+  border-radius: calc(var(--loader-size) * 0.075);
+  animation: wave 1.2s ease-in-out infinite;
+}
+
+.waveBar:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.waveBar:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.waveBar:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.waveBar:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+.waveBar:nth-child(5) {
+  animation-delay: 0.4s;
+}
+
+/* Ripple Variant */
+.ripple {
+  width: var(--loader-size);
+  height: var(--loader-size);
+  position: relative;
+}
+
+.rippleRing {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: var(--loader-thickness) solid var(--loader-color);
+  border-radius: 50%;
+  animation: ripple 1.2s ease-out infinite;
+}
+
+.rippleRing:nth-child(2) {
+  animation-delay: 0.6s;
+}
+
+/* Progress Variant */
+.progress {
+  width: calc(var(--loader-size) * 3);
+  height: var(--loader-thickness);
+  background: var(--loader-bg);
+  border-radius: var(--loader-thickness);
+  overflow: hidden;
+  position: relative;
+}
+
+.progressBar {
+  height: 100%;
+  background: var(--loader-color);
+  border-radius: var(--loader-thickness);
+  animation: progress 2s ease-in-out infinite;
+}
+
+/* Skeleton Variant */
+.skeleton {
+  width: calc(var(--loader-size) * 4);
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--loader-size) * 0.2);
+}
+
+.skeletonLine {
+  height: calc(var(--loader-size) * 0.3);
+  background: linear-gradient(
+    90deg,
+    var(--loader-bg) 0%,
+    var(--loader-color) 50%,
+    var(--loader-bg) 100%
+  );
+  background-size: 200% 100%;
+  border-radius: calc(var(--loader-size) * 0.15);
+  animation: skeleton 1.5s ease-in-out infinite;
+}
+
+.skeletonLine:nth-child(1) {
+  width: 100%;
+}
+
+.skeletonLine:nth-child(2) {
+  width: 80%;
+}
+
+.skeletonLine:nth-child(3) {
+  width: 60%;
+}
+
+/* Animation Keyframes */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dotBounce {
+  0%, 80%, 100% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes pulseRing {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes pulseCore {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0.7;
+  }
+}
+
+@keyframes barBounce {
+  0%, 40%, 100% {
+    height: 20%;
+  }
+  20% {
+    height: 100%;
+  }
+}
+
+@keyframes wave {
+  0%, 40%, 100% {
+    transform: scaleY(0.4);
+  }
+  20% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes progress {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes skeleton {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes fadeInOut {
+  0%, 100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .spinnerInner,
+  .dot,
+  .pulseRing,
+  .pulseCore,
+  .bar,
+  .waveBar,
+  .rippleRing,
+  .progressBar,
+  .skeletonLine,
+  .loadingText {
+    animation: none;
+  }
+
+  /* Provide alternative static indicators */
+  .spinnerInner {
+    border-left-color: var(--loader-color);
+  }
+
+  .dot {
+    opacity: 0.7;
+  }
+
+  .bar {
+    height: 60%;
+  }
+
+  .skeletonLine {
+    background: var(--loader-bg);
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .loading {
+    --loader-color: currentColor;
+    --loader-bg: transparent;
+  }
+
+  .overlay {
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  .loadingText {
+    color: currentColor;
+    font-weight: var(--weight-bold);
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .overlay {
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  .loadingText {
+    color: var(--gray-300);
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .overlay {
+    backdrop-filter: blur(2px); /* Reduce blur for better performance */
+  }
+
+  .large {
+    --loader-size: 28px; /* Slightly smaller on mobile */
+  }
+
+  .extraLarge {
+    --loader-size: 40px;
+  }
+}
+
+/* Focus and accessibility indicators */
+.loading:focus-visible {
+  outline: 2px solid var(--loader-color);
+  outline-offset: 4px;
+  border-radius: var(--border-radius-sm);
+}
+
+/* Loading text responsive sizing */
+@media (max-width: 480px) {
+  .loadingText {
+    font-size: var(--text-xs);
+  }
+}
+
+/* Performance optimizations */
+.spinner,
+.dots,
+.pulse,
+.bars,
+.wave,
+.ripple,
+.progress,
+.skeleton {
+  will-change: transform;
+}
+
+/* Print styles */
+@media print {
+  .loading {
+    display: none;
+  }
+}
