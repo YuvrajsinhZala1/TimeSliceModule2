@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer, useCallback } from 'react';
-import { authService } from '../services/authService'; // Keep this as named import
+import authService from '../services/authService';
 import { logInfo, logError, logDebug } from '../utils/logger';
 
 // Initial state
@@ -246,4 +246,4 @@ export function useAuth() {
   return context;
 }
 
-export default AuthContext;
+export default AuthContext; 

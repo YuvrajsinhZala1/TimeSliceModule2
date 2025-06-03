@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { authService } from '../../services/authService';
+
 import { reviewService } from '../../services/reviewService';
 import { formatDate, getInitials, formatRating } from '../../utils/helpers';
-import Loading from '../Common/Loading';
-import ErrorMessage from '../Common/ErrorMessage';
+import Loading from '../Common/Loading/Loading';
+import ErrorMessage from '../Common/ErrorMessage/ErrorMessage';
 
 const UserProfile = ({ userId, isCurrentUser = false }) => {
   const [user, setUser] = useState(null);
@@ -23,7 +23,7 @@ const UserProfile = ({ userId, isCurrentUser = false }) => {
       setError(null);
 
       const [userResponse, reviewsResponse, statsResponse] = await Promise.all([
-        authService.getUserProfile(userId),
+        //authService.getUserProfile(userId),
         reviewService.getUserReviews(userId, { limit: 10 }),
         reviewService.getReviewStats(userId)
       ]);

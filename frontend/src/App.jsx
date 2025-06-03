@@ -9,7 +9,7 @@ import Header from './components/Layout/Header/Header';
 import Footer from './components/Layout/Footer/Footer';
 
 // Auth Components - Lazy loaded for better performance
-const Login = React.lazy(() => import('./components/Auth/Login/Login'));
+const Login = React.lazy(() => import('./components/Auth/login/Login'));
 const Signup = React.lazy(() => import('./components/Auth/Signup/Signup'));
 const ProtectedRoute = React.lazy(() => import('./components/Auth/ProtectedRoute/ProtectedRoute'));
 

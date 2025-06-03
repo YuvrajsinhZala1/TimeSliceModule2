@@ -3,8 +3,8 @@ import { toast } from 'react-toastify';
 import { walletService } from '../../services/walletService';
 import { logInfo, logError } from '../../utils/logger';
 import { formatCredits, formatDate } from '../../utils/helpers';
-import Loading from '../Common/Loading';
-import ErrorMessage from '../Common/ErrorMessage';
+import Loading from '../Common/Loading/Loading';
+import ErrorMessage from '../Common/ErrorMessage/ErrorMessage';
 
 const Wallet = () => {
   const [loading, setLoading] = useState(true);

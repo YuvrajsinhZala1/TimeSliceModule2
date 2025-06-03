@@ -2,14 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+
+// Correct paths based on your project structure
 import './styles/animations.css';
-import './styles/glassmorphism.css';
-import './styles/globals.css';
-import './styles/components.css';
-import './styles/pages.css';
-import './styles/responsive.css';
+import './styles/global.css';
+import './styles/variables.css';
+import './styles/mixins.css';
+import './styles/typography.css';
+import './styles/utilities.css';
+
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-datepicker/dist/react-datepicker.css';
+
 import App from './App';
 import { AuthProvider } from './context/AuthContext';
 import { logInfo, logError } from './utils/logger';
@@ -34,12 +38,12 @@ class ErrorBoundary extends React.Component {
     logError('Application Error Boundary caught an error:', {
       error: error.message,
       stack: error.stack,
-      errorInfo: errorInfo.componentStack
+      errorInfo: errorInfo.componentStack,
     });
-    
+
     this.setState({
       error: error,
-      errorInfo: errorInfo
+      errorInfo: errorInfo,
     });
   }
 

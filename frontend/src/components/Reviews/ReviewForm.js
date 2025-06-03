@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { reviewService } from '../../services/reviewService';
 import { logInfo, logError } from '../../utils/logger';
-import Loading from '../Common/Loading';
+import Loading from '../Common/Loading/Loading';
 
 const ReviewForm = ({ booking, onSubmit, onCancel, reviewerType = 'student' }) => {
   const [formData, setFormData] = useState({
