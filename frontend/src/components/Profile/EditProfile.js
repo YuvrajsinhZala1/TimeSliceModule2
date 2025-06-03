@@ -3,8 +3,8 @@ import { toast } from 'react-toastify';
 import { useAuth } from '../../context/AuthContext';
 import { authService } from '../../services/authService';
 import { VALIDATION_RULES } from '../../utils/constants';
-import Loading from '../Common/Loading';
-import ErrorMessage from '../Common/ErrorMessage';
+import Loading from '../Common/Loading/Loading';
+import ErrorMessage from '../Common/ErrorMessage/ErrorMessage';
 
 const EditProfile = ({ onCancel, onSave }) => {
   const { user, updateUser } = useAuth();

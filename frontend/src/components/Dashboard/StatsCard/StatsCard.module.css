@@ -1,0 +1,580 @@
+/* Stats Card Component Styles */
+
+.statsCard {
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-soft);
+  padding: var(--spacing-lg);
+  position: relative;
+  transition: all var(--transition-base) ease;
+  overflow: hidden;
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.statsCard:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
+}
+
+/* Card Variants */
+.statsCard.primary {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  color: white;
+  border-color: var(--primary-dark);
+}
+
+.statsCard.success {
+  background: linear-gradient(135deg, var(--success-color), var(--success-dark));
+  color: white;
+  border-color: var(--success-dark);
+}
+
+.statsCard.warning {
+  background: linear-gradient(135deg, var(--warning-color), var(--warning-dark));
+  color: white;
+  border-color: var(--warning-dark);
+}
+
+.statsCard.danger {
+  background: linear-gradient(135deg, var(--error-color), var(--error-dark));
+  color: white;
+  border-color: var(--error-dark);
+}
+
+/* Clickable Cards */
+.statsCard.clickable {
+  cursor: pointer;
+}
+
+.statsCard.clickable:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-strong);
+}
+
+.statsCard.clickable:active {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-medium);
+}
+
+/* Loading State */
+.statsCard.loading {
+  pointer-events: none;
+}
+
+.loadingOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  backdrop-filter: blur(2px);
+}
+
+.loadingSpinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--border-color);
+  border-top: 2px solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Card Header */
+.cardHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.iconContainer {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.statsCard.default .iconContainer {
+  background: var(--background-secondary);
+  border-color: var(--border-color);
+}
+
+.icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.statsCard.default .icon {
+  filter: grayscale(0.3);
+}
+
+.titleContainer {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  margin: 0 0 var(--spacing-xs) 0;
+  color: inherit;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: var(--leading-tight);
+}
+
+.statsCard.default .title {
+  color: var(--text-secondary);
+}
+
+.subtitle {
+  font-size: var(--text-xs);
+  margin: 0;
+  opacity: 0.8;
+  line-height: var(--leading-snug);
+}
+
+.statsCard.default .subtitle {
+  color: var(--text-tertiary);
+}
+
+/* Trend Container */
+.trendContainer {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-full);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+}
+
+.statsCard.default .trendContainer {
+  background: var(--background-tertiary);
+  border-color: var(--border-color);
+}
+
+.trendIcon {
+  font-size: var(--text-xs);
+  line-height: 1;
+}
+
+.trendValue {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+}
+
+/* Trend Colors */
+.trendUp {
+  color: var(--success-color);
+}
+
+.trendDown {
+  color: var(--error-color);
+}
+
+.trendNeutral {
+  color: var(--text-secondary);
+}
+
+.statsCard.default .trendUp {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.3);
+  color: var(--success-color);
+}
+
+.statsCard.default .trendDown {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: var(--error-color);
+}
+
+.statsCard.default .trendNeutral {
+  background: rgba(107, 114, 128, 0.1);
+  border-color: rgba(107, 114, 128, 0.3);
+  color: var(--text-secondary);
+}
+
+/* Card Body */
+.cardBody {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--spacing-xs);
+}
+
+.valueContainer {
+  margin-bottom: var(--spacing-sm);
+}
+
+.value {
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+  color: inherit;
+  display: block;
+  letter-spacing: -0.025em;
+}
+
+.statsCard.default .value {
+  color: var(--text-primary);
+}
+
+.trendDescription {
+  font-size: var(--text-xs);
+  opacity: 0.8;
+  line-height: var(--leading-snug);
+}
+
+.statsCard.default .trendDescription {
+  color: var(--text-tertiary);
+}
+
+/* Card Footer */
+.cardFooter {
+  margin-top: var(--spacing-md);
+  padding-top: var(--spacing-sm);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.statsCard.default .cardFooter {
+  border-color: var(--border-color);
+}
+
+.viewMore {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  opacity: 0.8;
+  transition: opacity var(--transition-fast) ease;
+}
+
+.statsCard:hover .viewMore {
+  opacity: 1;
+}
+
+.arrow {
+  transition: transform var(--transition-fast) ease;
+}
+
+.statsCard:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .statsCard {
+    padding: var(--spacing-md);
+    min-height: 120px;
+  }
+
+  .cardHeader {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    align-items: flex-start;
+  }
+
+  .iconContainer {
+    width: 40px;
+    height: 40px;
+  }
+
+  .icon {
+    font-size: 1.25rem;
+  }
+
+  .value {
+    font-size: var(--text-2xl);
+  }
+
+  .trendContainer {
+    align-self: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .statsCard {
+    padding: var(--spacing-sm);
+    min-height: 100px;
+  }
+
+  .iconContainer {
+    width: 32px;
+    height: 32px;
+  }
+
+  .icon {
+    font-size: 1rem;
+  }
+
+  .value {
+    font-size: var(--text-xl);
+  }
+
+  .title {
+    font-size: var(--text-xs);
+  }
+
+  .subtitle {
+    font-size: 10px;
+  }
+
+  .trendContainer {
+    padding: 2px 6px;
+  }
+
+  .trendValue,
+  .trendDescription {
+    font-size: 10px;
+  }
+}
+
+/* Animation */
+.statsCard {
+  animation: cardSlideIn 0.3s ease-out;
+}
+
+@keyframes cardSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .statsCard {
+    border-width: 2px;
+  }
+
+  .iconContainer,
+  .trendContainer {
+    border-width: 2px;
+  }
+
+  .cardFooter {
+    border-top-width: 2px;
+  }
+
+  .statsCard.primary,
+  .statsCard.success,
+  .statsCard.warning,
+  .statsCard.danger {
+    border-width: 3px;
+  }
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  .statsCard {
+    background: var(--gray-800);
+    border-color: var(--gray-700);
+  }
+
+  .statsCard.default .iconContainer {
+    background: var(--gray-700);
+    border-color: var(--gray-600);
+  }
+
+  .statsCard.default .title {
+    color: var(--gray-300);
+  }
+
+  .statsCard.default .subtitle {
+    color: var(--gray-400);
+  }
+
+  .statsCard.default .value {
+    color: var(--gray-100);
+  }
+
+  .statsCard.default .trendDescription {
+    color: var(--gray-400);
+  }
+
+  .statsCard.default .trendContainer {
+    background: var(--gray-700);
+    border-color: var(--gray-600);
+  }
+
+  .statsCard.default .cardFooter {
+    border-color: var(--gray-600);
+  }
+
+  .loadingOverlay {
+    background: rgba(31, 41, 55, 0.8);
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .statsCard {
+    animation: none;
+    transition: none;
+  }
+
+  .statsCard:hover {
+    transform: none;
+  }
+
+  .statsCard.clickable:hover {
+    transform: none;
+  }
+
+  .statsCard.clickable:active {
+    transform: none;
+  }
+
+  .arrow {
+    transition: none;
+  }
+
+  .statsCard:hover .arrow {
+    transform: none;
+  }
+
+  .loadingSpinner {
+    animation: none;
+  }
+
+  .viewMore {
+    transition: none;
+  }
+}
+
+/* Focus States */
+.statsCard:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+.statsCard.clickable:focus {
+  outline: 3px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+  .statsCard {
+    box-shadow: none;
+    border: 1px solid black;
+    break-inside: avoid;
+  }
+
+  .statsCard:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .cardFooter {
+    display: none;
+  }
+
+  .statsCard.primary,
+  .statsCard.success,
+  .statsCard.warning,
+  .statsCard.danger {
+    background: white !important;
+    color: black !important;
+  }
+}
+
+/* Custom Properties for Variants */
+.statsCard.primary {
+  --card-bg: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  --card-text: white;
+}
+
+.statsCard.success {
+  --card-bg: linear-gradient(135deg, var(--success-color), var(--success-dark));
+  --card-text: white;
+}
+
+.statsCard.warning {
+  --card-bg: linear-gradient(135deg, var(--warning-color), var(--warning-dark));
+  --card-text: white;
+}
+
+.statsCard.danger {
+  --card-bg: linear-gradient(135deg, var(--error-color), var(--error-dark));
+  --card-text: white;
+}
+
+/* Accessibility */
+.statsCard[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Loading shimmer effect */
+.statsCard.loading::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Interactive states for different variants */
+.statsCard.primary:hover {
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+}
+
+.statsCard.success:hover {
+  background: linear-gradient(135deg, var(--success-dark), var(--success-color));
+}
+
+.statsCard.warning:hover {
+  background: linear-gradient(135deg, var(--warning-dark), var(--warning-color));
+}
+
+.statsCard.danger:hover {
+  background: linear-gradient(135deg, var(--error-dark), var(--error-color));
+}
