@@ -1,0 +1,784 @@
+/* Profile Page Styles */
+
+.profilePage {
+  min-height: 100vh;
+  background: var(--background-primary);
+  padding: var(--spacing-lg) 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.errorContainer {
+  max-width: 600px;
+  margin: var(--spacing-2xl) auto;
+}
+
+/* Profile Header */
+.profileHeader {
+  background: white;
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--border-color);
+  margin-bottom: var(--spacing-xl);
+  overflow: hidden;
+}
+
+.profileHero {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  padding: var(--spacing-2xl);
+  color: white;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: var(--spacing-xl);
+  align-items: center;
+  position: relative;
+}
+
+.profileHero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="80" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="60" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* Avatar Section */
+.avatarSection {
+  position: relative;
+  z-index: 1;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--border-radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.avatarText {
+  font-size: 2.5rem;
+  font-weight: var(--weight-bold);
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.profileBadge {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: var(--success-color);
+  color: white;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-full);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.badgeText {
+  text-shadow: none;
+}
+
+/* Profile Info */
+.profileInfo {
+  flex: 1;
+  z-index: 1;
+}
+
+.profileName {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: var(--weight-bold);
+  margin: 0 0 var(--spacing-xs) 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.profileEmail {
+  font-size: var(--text-lg);
+  opacity: 0.9;
+  margin: 0 0 var(--spacing-md) 0;
+}
+
+.profileRating {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.stars {
+  display: flex;
+  gap: var(--spacing-xs);
+}
+
+.star {
+  font-size: var(--text-lg);
+  opacity: 0.3;
+  transition: opacity var(--transition-fast) ease;
+}
+
+.starFilled {
+  opacity: 1;
+}
+
+.ratingText {
+  font-size: var(--text-sm);
+  opacity: 0.9;
+}
+
+.profileBio {
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--spacing-lg);
+  opacity: 0.95;
+  max-width: 600px;
+}
+
+/* Skills Section */
+.skillsSection {
+  margin-bottom: var(--spacing-lg);
+}
+
+.skillsTitle {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  margin: 0 0 var(--spacing-md) 0;
+}
+
+.skillsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+.skillTag {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  color: white;
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: var(--border-radius-full);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Join Date */
+.joinDate {
+  font-size: var(--text-sm);
+  opacity: 0.8;
+}
+
+.joinDateLabel {
+  font-weight: var(--weight-normal);
+}
+
+.joinDateValue {
+  font-weight: var(--weight-semibold);
+}
+
+/* Profile Actions */
+.profileActions {
+  z-index: 1;
+}
+
+/* Stats Grid */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-lg);
+  padding: var(--spacing-xl);
+  background: white;
+}
+
+.statCard {
+  text-align: center;
+  padding: var(--spacing-lg);
+  background: var(--background-secondary);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--border-color);
+  transition: all var(--transition-base) ease;
+}
+
+.statCard:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.statValue {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: var(--weight-extrabold);
+  color: var(--primary-color);
+  margin-bottom: var(--spacing-xs);
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Tabs */
+.tabsContainer {
+  margin-bottom: var(--spacing-xl);
+}
+
+.tabs {
+  display: flex;
+  background: white;
+  border-radius: var(--border-radius-xl);
+  padding: var(--spacing-sm);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--border-color);
+  overflow-x: auto;
+  gap: var(--spacing-xs);
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  flex: 1;
+  min-width: fit-content;
+  padding: 12px 16px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  border-radius: var(--border-radius-lg);
+  cursor: pointer;
+  transition: all var(--transition-base) ease;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.tab:hover {
+  background: var(--background-secondary);
+  color: var(--text-primary);
+}
+
+.tabActive {
+  background: var(--primary-color);
+  color: white;
+  box-shadow: var(--shadow-sm);
+}
+
+.tabActive:hover {
+  background: var(--primary-dark);
+  color: white;
+}
+
+.tabIcon {
+  font-size: var(--text-base);
+}
+
+.tabLabel {
+  font-weight: inherit;
+}
+
+/* Tab Content */
+.tabContent {
+  background: white;
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--border-color);
+  padding: var(--spacing-xl);
+}
+
+/* Overview Section */
+.overviewSection {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.overviewGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--spacing-xl);
+}
+
+.aboutCard,
+.activityCard,
+.recentReviewsCard {
+  background: var(--background-secondary);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+.cardTitle {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+  margin: 0;
+  padding: var(--spacing-lg);
+  background: white;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.cardContent {
+  padding: var(--spacing-lg);
+}
+
+.bioText {
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+  margin: 0;
+}
+
+.emptyState {
+  text-align: center;
+  padding: var(--spacing-lg);
+}
+
+.emptyText {
+  color: var(--text-tertiary);
+  margin: 0 0 var(--spacing-md) 0;
+  font-style: italic;
+}
+
+/* Activity List */
+.activityList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.activityItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: white;
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--border-color);
+}
+
+.activityIcon {
+  font-size: 1.5rem;
+  width: 40px;
+  text-align: center;
+}
+
+.activityInfo {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.activityLabel {
+  color: var(--text-secondary);
+  font-weight: var(--weight-medium);
+}
+
+.activityValue {
+  color: var(--primary-color);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-lg);
+}
+
+/* Recent Reviews */
+.recentReviewsCard {
+  grid-column: 1 / -1;
+}
+
+.reviewsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.reviewPreview {
+  padding: var(--spacing-md);
+  background: white;
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--border-color);
+}
+
+.reviewHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-sm);
+}
+
+.reviewerName {
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+}
+
+.reviewRating {
+  display: flex;
+  gap: var(--spacing-xs);
+}
+
+.reviewStar {
+  font-size: var(--text-sm);
+}
+
+.reviewComment {
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  margin: 0;
+  font-style: italic;
+}
+
+/* Reviews Section */
+.reviewsSection {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.sectionHeader {
+  margin-bottom: var(--spacing-xl);
+  text-align: center;
+}
+
+.sectionTitle {
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-sm) 0;
+}
+
+.sectionSubtitle {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.reviewsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: var(--spacing-xl);
+}
+
+.emptyReviews,
+.emptySkills {
+  text-align: center;
+  padding: var(--spacing-4xl) var(--spacing-xl);
+}
+
+.emptyIcon {
+  font-size: 4rem;
+  margin-bottom: var(--spacing-lg);
+  opacity: 0.5;
+}
+
+.emptyTitle {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-md) 0;
+}
+
+.emptyDescription {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  margin: 0 0 var(--spacing-xl) 0;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: var(--leading-relaxed);
+}
+
+/* Skills Analysis Section */
+.skillsAnalysisSection {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .overviewGrid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  .reviewsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: var(--spacing-lg);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 var(--spacing-sm);
+  }
+
+  .profilePage {
+    padding: var(--spacing-md) 0;
+  }
+
+  .profileHero {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+    text-align: center;
+    padding: var(--spacing-xl);
+  }
+
+  .profileActions {
+    order: -1;
+  }
+
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+  }
+
+  .tabs {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  .tab {
+    flex: none;
+    justify-content: center;
+  }
+
+  .tabContent {
+    padding: var(--spacing-lg);
+  }
+
+  .reviewsGrid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  .activityItem {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--spacing-sm);
+  }
+
+  .activityInfo {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  .emptyReviews,
+  .emptySkills {
+    padding: var(--spacing-2xl) var(--spacing-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .profileHero {
+    padding: var(--spacing-lg);
+  }
+
+  .avatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .avatarText {
+    font-size: 1.5rem;
+  }
+
+  .profileName {
+    font-size: 1.75rem;
+  }
+
+  .profileEmail {
+    font-size: var(--text-base);
+  }
+
+  .statsGrid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+  }
+
+  .tabContent {
+    padding: var(--spacing-md);
+  }
+
+  .cardTitle {
+    padding: var(--spacing-md);
+    font-size: var(--text-base);
+  }
+
+  .cardContent {
+    padding: var(--spacing-md);
+  }
+
+  .skillsList {
+    gap: var(--spacing-xs);
+  }
+
+  .skillTag {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--text-xs);
+  }
+}
+
+/* Animation Effects */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .profileHeader,
+  .tabsContainer,
+  .tabContent {
+    border-width: 2px;
+  }
+
+  .tab {
+    border: 1px solid transparent;
+  }
+
+  .tabActive {
+    border-color: var(--primary-color);
+  }
+
+  .statCard,
+  .aboutCard,
+  .activityCard,
+  .recentReviewsCard {
+    border-width: 2px;
+  }
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  .profilePage {
+    background: var(--gray-900);
+  }
+
+  .profileHeader,
+  .tabs,
+  .tabContent {
+    background: var(--gray-800);
+    border-color: var(--gray-700);
+  }
+
+  .statsGrid {
+    background: var(--gray-800);
+  }
+
+  .statCard,
+  .aboutCard,
+  .activityCard,
+  .recentReviewsCard {
+    background: var(--gray-700);
+    border-color: var(--gray-600);
+  }
+
+  .cardTitle {
+    background: var(--gray-600);
+    color: var(--gray-100);
+  }
+
+  .tab {
+    color: var(--gray-400);
+  }
+
+  .tab:hover {
+    background: var(--gray-700);
+    color: var(--gray-200);
+  }
+
+  .profileName,
+  .sectionTitle,
+  .emptyTitle {
+    color: var(--gray-100);
+  }
+
+  .profileEmail,
+  .sectionSubtitle,
+  .emptyDescription {
+    color: var(--gray-300);
+  }
+
+  .activityItem,
+  .reviewPreview {
+    background: var(--gray-600);
+    border-color: var(--gray-500);
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .reviewsSection,
+  .overviewSection,
+  .skillsAnalysisSection {
+    animation: none;
+  }
+
+  .tab,
+  .statCard {
+    transition: none;
+  }
+
+  .statCard:hover {
+    transform: none;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .profilePage {
+    background: white;
+  }
+
+  .profileHeader,
+  .tabs,
+  .tabContent {
+    box-shadow: none;
+    border: 1px solid black;
+  }
+
+  .profileActions {
+    display: none;
+  }
+
+  .tabs {
+    display: none;
+  }
+
+  .profileHero {
+    background: white;
+    color: black;
+  }
+
+  .profileHero::before {
+    display: none;
+  }
+
+  .avatar {
+    background: #f0f0f0;
+    border-color: black;
+  }
+
+  .avatarText {
+    color: black;
+    text-shadow: none;
+  }
+}

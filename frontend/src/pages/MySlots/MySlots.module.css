@@ -1,0 +1,644 @@
+/* My Slots Page Styles */
+
+.mySlotsPage {
+  min-height: 100vh;
+  background: var(--background-primary);
+  padding: var(--spacing-lg) 0;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.errorContainer {
+  max-width: 600px;
+  margin: var(--spacing-2xl) auto;
+}
+
+/* Header Section */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-xl);
+  background: white;
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--border-color);
+}
+
+.headerContent {
+  flex: 1;
+}
+
+.title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: var(--weight-bold);
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-sm) 0;
+  line-height: var(--leading-tight);
+}
+
+.subtitle {
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: var(--leading-relaxed);
+}
+
+/* Stats Grid */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+.statCard {
+  background: white;
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--border-color);
+  text-align: center;
+  transition: all var(--transition-base) ease;
+}
+
+.statCard:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
+}
+
+.statValue {
+  font-size: clamp(2rem, 3vw, 2.5rem);
+  font-weight: var(--weight-extrabold);
+  color: var(--primary-color);
+  margin-bottom: var(--spacing-xs);
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Tabs */
+.tabsContainer {
+  margin-bottom: var(--spacing-xl);
+}
+
+.tabs {
+  display: flex;
+  background: white;
+  border-radius: var(--border-radius-xl);
+  padding: var(--spacing-sm);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--border-color);
+  overflow-x: auto;
+  gap: var(--spacing-xs);
+}
+
+.tab {
+  flex: 1;
+  min-width: fit-content;
+  padding: 12px 16px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  border-radius: var(--border-radius-lg);
+  cursor: pointer;
+  transition: all var(--transition-base) ease;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.tab:hover {
+  background: var(--background-secondary);
+  color: var(--text-primary);
+}
+
+.tabActive {
+  background: var(--primary-color);
+  color: white;
+  box-shadow: var(--shadow-sm);
+}
+
+.tabActive:hover {
+  background: var(--primary-dark);
+  color: white;
+}
+
+/* Slots Section */
+.slotsSection {
+  background: white;
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--border-color);
+}
+
+.slotsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: var(--spacing-xl);
+}
+
+/* Slot Card Content */
+.slotDetails {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.slotDescription {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--spacing-sm);
+}
+
+.slotMeta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.duration,
+.cost,
+.platform {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+.duration strong,
+.cost strong,
+.platform strong {
+  color: var(--text-primary);
+  font-weight: var(--weight-medium);
+}
+
+.slotTiming {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm);
+  background: var(--background-secondary);
+  border-radius: var(--border-radius-sm);
+  border-left: 3px solid var(--primary-color);
+}
+
+.sessionDate,
+.createdAt {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+.sessionDate strong,
+.createdAt strong {
+  color: var(--text-primary);
+  font-weight: var(--weight-medium);
+}
+
+.slotTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  margin-top: var(--spacing-sm);
+}
+
+.tag {
+  background: var(--primary-color);
+  color: white;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-full);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+}
+
+/* Slot Image */
+.slotImage {
+  position: relative;
+  height: 140px;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+  color: white;
+}
+
+.slotIcon {
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.slotCategory {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  opacity: 0.9;
+}
+
+/* Status Badges */
+.statusBadge {
+  display: inline-block;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-full);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.statusAvailable {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--success-color);
+}
+
+.statusBooked {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--info-color);
+}
+
+.statusCompleted {
+  background: rgba(147, 51, 234, 0.1);
+  color: #9333ea;
+}
+
+.statusExpired {
+  background: rgba(107, 114, 128, 0.1);
+  color: var(--text-secondary);
+}
+
+.statusDefault {
+  background: var(--background-tertiary);
+  color: var(--text-secondary);
+}
+
+/* Slot Actions */
+.slotActions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  align-items: flex-start;
+}
+
+.bookedNote {
+  font-size: var(--text-xs);
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--info-color);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-full);
+  font-weight: var(--weight-medium);
+}
+
+.completedNote {
+  font-size: var(--text-xs);
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--success-color);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-full);
+  font-weight: var(--weight-medium);
+}
+
+.expiredNote {
+  font-size: var(--text-xs);
+  background: rgba(107, 114, 128, 0.1);
+  color: var(--text-secondary);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-full);
+  font-weight: var(--weight-medium);
+}
+
+.bookingInfo {
+  margin-top: var(--spacing-xs);
+}
+
+.bookingCount {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+  font-style: italic;
+}
+
+/* Empty State */
+.emptyState {
+  text-align: center;
+  padding: var(--spacing-4xl) var(--spacing-xl);
+}
+
+.emptyIcon {
+  font-size: 4rem;
+  margin-bottom: var(--spacing-lg);
+  opacity: 0.5;
+}
+
+.emptyTitle {
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-md) 0;
+}
+
+.emptyDescription {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  margin: 0 0 var(--spacing-xl) 0;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: var(--leading-relaxed);
+}
+
+/* Delete Confirmation Modal Content */
+.deleteConfirmation {
+  text-align: left;
+}
+
+.deleteConfirmation p {
+  margin: 0 0 var(--spacing-md) 0;
+  line-height: var(--leading-relaxed);
+}
+
+.deleteDetails {
+  background: var(--background-secondary);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+  margin: var(--spacing-md) 0;
+}
+
+.deleteDetails p {
+  margin: 0 0 var(--spacing-xs) 0;
+  font-size: var(--text-sm);
+}
+
+.deleteDetails p:last-child {
+  margin-bottom: 0;
+}
+
+.deleteDetails strong {
+  color: var(--text-primary);
+  font-weight: var(--weight-medium);
+}
+
+.deleteWarning {
+  background: rgba(245, 158, 11, 0.1);
+  color: var(--warning-color);
+  padding: var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  border-left: 3px solid var(--warning-color);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .slotsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: var(--spacing-lg);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 var(--spacing-sm);
+  }
+
+  .mySlotsPage {
+    padding: var(--spacing-md) 0;
+  }
+
+  .header {
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg);
+  }
+
+  .statsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .tabs {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  .tab {
+    flex: none;
+    text-align: left;
+  }
+
+  .slotsSection {
+    padding: var(--spacing-lg);
+  }
+
+  .slotsGrid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  .slotDetails {
+    gap: var(--spacing-sm);
+  }
+
+  .slotTiming {
+    padding: var(--spacing-xs);
+  }
+
+  .emptyState {
+    padding: var(--spacing-2xl) var(--spacing-md);
+  }
+
+  .emptyIcon {
+    font-size: 3rem;
+  }
+
+  .emptyTitle {
+    font-size: var(--text-xl);
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: var(--spacing-md);
+  }
+
+  .title {
+    font-size: 1.75rem;
+  }
+
+  .subtitle {
+    font-size: var(--text-base);
+  }
+
+  .slotsSection {
+    padding: var(--spacing-md);
+  }
+
+  .slotImage {
+    height: 120px;
+  }
+
+  .slotIcon {
+    font-size: 2rem;
+  }
+
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-sm);
+  }
+
+  .statCard {
+    padding: var(--spacing-md);
+  }
+
+  .deleteDetails {
+    padding: var(--spacing-sm);
+  }
+}
+
+/* Animation Effects */
+.slotsGrid > * {
+  animation: slideInUp 0.6s ease-out both;
+}
+
+.slotsGrid > *:nth-child(1) { animation-delay: 0.1s; }
+.slotsGrid > *:nth-child(2) { animation-delay: 0.2s; }
+.slotsGrid > *:nth-child(3) { animation-delay: 0.3s; }
+.slotsGrid > *:nth-child(4) { animation-delay: 0.4s; }
+.slotsGrid > *:nth-child(5) { animation-delay: 0.5s; }
+.slotsGrid > *:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .header,
+  .tabsContainer,
+  .slotsSection,
+  .statCard {
+    border-width: 2px;
+  }
+
+  .tab {
+    border: 1px solid transparent;
+  }
+
+  .tabActive {
+    border-color: var(--primary-color);
+  }
+
+  .statusBadge {
+    border: 1px solid currentColor;
+  }
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  .mySlotsPage {
+    background: var(--gray-900);
+  }
+
+  .header,
+  .tabs,
+  .slotsSection,
+  .statCard {
+    background: var(--gray-800);
+    border-color: var(--gray-700);
+  }
+
+  .title {
+    color: var(--gray-100);
+  }
+
+  .subtitle {
+    color: var(--gray-300);
+  }
+
+  .tab {
+    color: var(--gray-400);
+  }
+
+  .tab:hover {
+    background: var(--gray-700);
+    color: var(--gray-200);
+  }
+
+  .slotTiming {
+    background: var(--gray-700);
+  }
+
+  .deleteDetails {
+    background: var(--gray-700);
+  }
+
+  .emptyTitle {
+    color: var(--gray-100);
+  }
+
+  .emptyDescription {
+    color: var(--gray-400);
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .slotsGrid > * {
+    animation: none;
+  }
+
+  .tab,
+  .statCard {
+    transition: none;
+  }
+
+  .statCard:hover {
+    transform: none;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .mySlotsPage {
+    background: white;
+  }
+
+  .header,
+  .tabs,
+  .slotsSection,
+  .statCard {
+    box-shadow: none;
+    border: 1px solid black;
+  }
+
+  .slotActions {
+    display: none;
+  }
+
+  .tabs {
+    display: none;
+  }
+
+  .slotsGrid {
+    grid-template-columns: 1fr;
+  }
+}
